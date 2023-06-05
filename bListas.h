@@ -1,12 +1,9 @@
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
-
-//  1) Escriba una tipificación adecuada que defina LISTA como una lista enlazada
+//  Tipificación adecuada para lista enlazada
 typedef int item;               //Asigno el alias "item" al tipo de dato, en este caso int
-
 const item indefinido=9999;     //Defino un valor para lo indefinido
 
 struct Nodo{                        
@@ -16,28 +13,22 @@ struct Nodo{
 typedef struct Nodo *Lista;     //Se define un alias llamado “Lista” que es un puntero a una estructura de tipo “Nodo”.
                                 // “Lista” es un puntero que apunta a la dirección de memoria de una estructura de tipo “Nodo”.
 
-
-
-//  2) Escriba las siguientes funciones básicas de lista enlazada:
-//      a) Crea una lista vacia
+//  Crea una lista vacia
 Lista crearLista(){             
     return NULL;
 }
 
-
-
-//      b) Determina si la lista esta vacia, devuelve un booleano
+//  Determina si la lista esta vacia, devuelve un booleano
 int esListaVacia(Lista L){
     if(L==NULL){
-        return 1;                            //incluir la biblioteca #include <stdbool.h>
+        return 1;                        
     } else{
         return 0;
     }
 }
 
 
-
-// //      c) Muestra por pantalla el contenido de los nodos de la lista
+//  Muestra por pantalla el contenido de los nodos de la lista
 void mostrar(Lista L){
     if(esListaVacia(L)){
         printf("\nLa Lista esta vacia\n");
@@ -52,7 +43,6 @@ void mostrar(Lista L){
 }
 
 
-
 // //      d)Retorna el contenido del primer elemento de la lista.
 int primerElemento(Lista L){
     int x;
@@ -63,10 +53,7 @@ int primerElemento(Lista L){
 }
 
 
-
-
-// // //      e)Insertar un nodo al comienzo de la lista
-
+//  Insertar un nodo al comienzo de la lista
 // //  *   *   *   FUNCION POR VALOR   *   *   *
 Lista insertar(Lista L, item x){
     struct Nodo* nuevo;
@@ -87,9 +74,7 @@ Lista insertar(Lista L, item x){
 // }
 
 
-
-
-//      f)Borra el nodo del comienzo de la lista
+//  Borra el nodo del comienzo de la lista
 Lista borrar(Lista L){
     struct Nodo* aux;                      //Recordar que aux al ser Lista ya es un puntero
     if(!esListaVacia(L)){           //Reviso, si esta vacia no borro nada
@@ -114,8 +99,7 @@ int ContarPares(Lista *L){
 }
 
 
-
-// //      g) Cuenta la cantidad de nodos que tiene la lista
+//  Cuenta la cantidad de nodos que tiene la lista
 int longitud(Lista L){
     int n=0;
     while (!esListaVacia(L))
@@ -127,7 +111,7 @@ int longitud(Lista L){
 }
 
 
-//      h)determina si un dato pertenece a la lista
+//  Determina si un dato pertenece a la lista
 int pertenece(Lista L, item x){
     Lista aux;
     while (!esListaVacia(L))
@@ -141,7 +125,7 @@ int pertenece(Lista L, item x){
 }
 
 
-
+//  Borra el ultimo de la lista
 Lista borrarUltimo(Lista L){
     struct Nodo* aux;
     // Null
@@ -170,51 +154,3 @@ Lista borrarUltimo(Lista L){
     }
     return L;
 }
-
-
-// 4) Escribir un programa que permita probar todas las funciones de la lista
-
-int main(){
-    Lista L;                    //Declaro una variable L que es un nodo
-    int x, y, n;
-    L = crearLista();
-    if(esListaVacia(L)){
-        printf("\nCantidad de valores que desea ingresar en la lista: ");
-          scanf("%d", &n);
-          getchar();
-          for(int i=0; i<n; i++){
-          printf("Ingrese valor %d: ", i+1);
-          scanf("%d", &x);
-              getchar();
-              L=insertar(L,x);
-          }
-          printf("\nCantidad de valores ingresados %d: \n", longitud(L));
-          mostrar(L);
-          printf("\nEl primer elemento de la lista es: %d", primerElemento(L));
-          printf("\n");
-          L=borrar(L);
-          printf("\nLos elementos de la lista despues de borrar el primer elemento de la lista son %d: \n", longitud(L));
-          mostrar(L);
-          mostrar(L);
-          printf("\nBuscar valor entero: ");
-          scanf("%d", &y);
-         if(pertenece(L,y)){
-             printf("\nEl valor pertenece a la lista\n");
-         }else{
-             printf("\nEl valor No pertenece a la lista\n");
-        }
-        //printf("\nCantidad de pares %d\n", ContarPares(&L));
-        //Nota importante cuando trabajamos por referencia se borra todo cuidado
-        printf("a verrrr");
-        if(esListaVacia(L)){
-            printf("\nEs vaaaaaciaaa\n");
-        }
-        
-        printf("a verrrr");
-        L=borrarUltimo(L);
-        mostrar(L);
-    }
-    return 0;
-}
-
-//Listas enlazadas
