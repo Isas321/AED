@@ -154,3 +154,24 @@ Lista borrarUltimo(Lista L){
     }
     return L;
 }
+
+
+//  Funcion que determina si son iguales
+bool iguales(Lista L1, Lista L2){
+    if(longitud(L1)==longitud(L2)){
+        //Tienen igual cantidad de datos, sigo analizando
+        while (!esListaVacia(L1)){
+            if(primerElemento(L1)!=primerElemento(L2)){
+                //printf("primer elemento distinto");
+                return false;
+            }
+            L1=borrar(L1);
+            L2=borrar(L2);
+        }
+   }else{
+        //Las listas son distintas
+        return false;
+   }
+   //printf("son iguales perro");
+   return true;
+}
