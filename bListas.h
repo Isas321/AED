@@ -175,3 +175,4 @@ bool iguales(Lista L1, Lista L2){
    //printf("son iguales perro");
    return true;
 }
+

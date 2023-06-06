@@ -1,5 +1,35 @@
 #include "bListas.h"
 
+//funcion recursiva de igualdad
+// int SonIguales(Lista L1, Lista L2){
+//     if(longitud(L1)!=longitud(L2)){
+//         return 0;
+//     } else{
+//         if(longitud(L1)==0){
+//             return 1;
+//         } else{
+//             if(primerElemento(L1)!=primerElemento(L2)){
+//                 return 0;
+//             } else{
+//                 SonIguales(borrar(L1), borrar(L2));
+//             }
+//         }
+//     }
+// }
+
+//  Funcion recursiva de igualdad mejorada
+int SonIguales(Lista L1, Lista L2){
+    if(longitud(L1)!=longitud(L2) || primerElemento(L1)!=primerElemento(L2)){
+        return 0;
+    } else{
+        if(longitud(L1)==0){
+            return 1;
+        } else{
+            SonIguales(borrar(L1), borrar(L2));
+        }
+    }
+}
+
 int main(){
     Lista L, M;                    //Declaro una variable L que es un nodo
     int x, y, n;
@@ -32,10 +62,13 @@ int main(){
           mostrar(M);
     }
 
-    if(iguales(L,M)){
+    if(SonIguales(L,M)){
         printf("Son iguales");
+    } else{
+        printf("Son diferentes");
     }
     return 0;
 }
 
-//Listas enlazadas
+
+
