@@ -1,0 +1,47 @@
+
+
+1_Especificacion algebraica del tipo FILA(ITEM)
+
+i_
+    SINTAXIS
+        DEFILAX: FILA X ITEM -> FILA
+
+    SEMANTICA: F FILA, X, Z ITEM
+        DEFILAX(FILAVACIA, Z)=FILAVACIA
+        DEFILAX(ENFILA(F, X),Z)=SI X=Z ENTONCES
+                                    RETORNA F
+                                SINO
+                                    ENFILA(DEFILAX(F,Z),X)
+
+ii_
+    SINTAXIS
+        ENFILAN: FILA X ITEM X ENTERO -> FILA
+    
+    SEMANTICA:F FILA, X ITEM, C ENTERO>=0
+        ENFILAN(F, X, C)=SI C=0 ENTONCES
+                            RETORNA F
+                        SINO
+                            ENFILAN(ENFILA(F,X),X,C-1)
+
+
+
+
+
+2_MISTERIO
+
+    ![ELEMENTOSDISTINTOS](image.png)
+    ELEMENTOSDISTINTOS: Enfila solo los elementos que no son comunes a las dos filas
+
+
+
+
+
+3_ FUNCION CONCATN(FILA F, FILA G, ENTERO N):
+    SI (ESFILAVACIA(G) OR N=0) ENTONCES
+        RETORNAR F
+    SINO
+        CONCATN(ENFILA(F,FRENTE(G)), DEFILA(G), N-1)
+
+
+
+
