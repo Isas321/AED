@@ -65,15 +65,15 @@ Tfila Defila(Tfila F){
     struct nodo *aux;
     aux=F.frente;
     if(EsFilaVacia(F)){
-        printf("\nDefila  No hay elementos");
+        //printf("\nDefila  No hay elementos");
         return F;
     } else{
         if(F.frente==F.final && F.longitud==1){
-            printf("\nDefila  Un solo elemento"); 
+            //printf("\nDefila  Un solo elemento"); 
             F.frente=NULL;
             F.final=NULL;
         } else{
-            printf("\nDefila  Mas de un elemento");
+            //printf("\nDefila  Mas de un elemento");
             F.frente=F.frente->sig;
         }
         F.longitud--;
@@ -83,37 +83,49 @@ Tfila Defila(Tfila F){
 }
 
 int Longitud(Tfila F){
-    /*if(EsFilaVacia(F)){
-        return 0;
-    } else{
-        return (1+Longitud(Defila(F)));
-    }*/
     return F.longitud;
 }
 
+//IMPORTANTE -> No usar defila porque borra todo! libera la memoria
+// int Pertenece(Tfila F, item x){
+//     if(EsFilaVacia(F)){
+//         return 0;
+//     }
+//     return (Frente(F)==x || Pertenece(Defila(F),x)); //Es lo mismo que lo de arriba
+// }
+
 int Pertenece(Tfila F, item x){
-    if(EsFilaVacia(F)){
+    int frente;
+    if(F.frente==NULL){
         return 0;
-    } else{
-        if(Frente(F)==x || Pertenece(Defila(F),x)){
-            return 1;
-        }
-        //return (Frente(F)==x || Pertenece(Defila(F),x)); Es lo mismo que lo de arriba
     }
+    //frente=F.frente->dato;
+    frente=Frente(F);
+    F.frente=F.frente->sig;
+    //F=Defila(F); //ESTO ROMPE TODO funciona bien solo si uso F.frente=F.frente->dato
+        return (frente==x || Pertenece(F,x));
 }
 
-
+ 
 int IgualF(Tfila F, Tfila G){
-    if(EsFilaVacia(F) && EsFilaVacia(G)){
+    int frenteF, frenteG;
+    if(F.frente==NULL && F.frente==NULL){
         return 1;
     } else{
-        if(EsFilaVacia(F) || EsFilaVacia(G)){
+        if(F.frente==NULL || F.frente==NULL){
             return 0;
         } else{
-            return (Frente(F)==Frente(G) && IgualF(Defila(F), Defila(G)));
+            frenteF=Frente(F);
+            frenteG=Frente(G);
+            F.frente=F.frente->sig;
+            G.frente=G.frente->sig;
+            return (frenteF==frenteG && IgualF(F,G));
+            //return (Frente(F)==Frente(G) && IgualF(Defila(F), Defila(G)));
+            //NO USAR DEFILA ROMPE TODO!
         }
     }
 }
+
 
 
 Tfila Concat(Tfila F, Tfila G){
@@ -125,7 +137,6 @@ Tfila Concat(Tfila F, Tfila G){
 }
 
 Tfila Invertir(Tfila F){
-
     if(EsFilaVacia){
         return F;
     } else{
@@ -134,28 +145,27 @@ Tfila Invertir(Tfila F){
 }
 
 
-int main(){
-    int n, x, i;
-    Tfila F;
+//  Funcion recursiva CONTATN implementada como usuario
 
-    printf("\nCantidad de elementos a ingresar: ");
-    scanf("%d", &n);
-    fflush(stdin);
-    F=FilaVacia();
-    for (i = 0; i < n; i++)
-    {
-        printf("Ingrese elemento [%d]: ", i);
-        scanf("%d", &x);
-        fflush(stdin);
-        F=EnFila(F,x);
-    }
-    F=Defila(F);
-    F=Defila(F);
-    if(EsFilaVacia(F)){
-        printf("\n\nVacia");
+Tfila CONCATN(Tfila F, Tfila G, int N){
+    int frente;
+    if(N==0 || EsFilaVacia(G)){
+        return F;
     } else{
-        printf("\n\nNo vacia");
+        frente=Frente(G);
+        F=EnFila(F, frente);
+        G=Defila(G);
+        return CONCATN(F, G, N-1);
+    }
+}
+
+void Mostrar(Tfila F){
+    printf("\n\n");
+    while (F.frente!=NULL)
+    {
+        printf("    %d", F.frente->dato);
+        F.frente=F.frente->sig;
     }
     printf("\n\n");
-    return 0;
 }
+
