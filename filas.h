@@ -136,13 +136,14 @@ Tfila Concat(Tfila F, Tfila G){
     }
 }
 
-Tfila Invertir(Tfila F){
-    if(EsFilaVacia){
-        return F;
-    } else{
-        return EnFila(Invertir(Defila(F)), Frente(F));        
-    }
-}
+//NO USAR DEFILA
+// Tfila Invertir(Tfila F){
+//     if(EsFilaVacia){
+//         return F;
+//     } else{
+//         return EnFila(Invertir(Defila(F)), Frente(F));        
+//     }
+// }
 
 
 //  Funcion recursiva CONTATN implementada como usuario
