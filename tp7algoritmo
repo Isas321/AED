@@ -1,0 +1,21 @@
+Arbol_de_expresion
+
+Entrada: expresion aritmetica en posfija
+Salida: arbol de expresion
+
+si es token=operando entonces
+    AB=armarAb(abVacio, operando, abVacio)
+    push(P, AB)
+sino
+    si es token=operador entonces
+        si altura de pila es 1 entonces
+            derecho=top(P)
+            P=pop(P)
+            AB= armarAb(derecho, operador, abVacio)
+        sino
+            izq=top(P)
+            P=pop(P)
+            derecho=top(P)
+            P=pop(P)
+            AB= armarAb(derecho, operador, izq)
+            P=push(P,AB)

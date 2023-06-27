@@ -119,38 +119,38 @@ Pila popFondo(Pila P){
     }
 }
 
-int main(){
-    Pila P;
-    int x, n;
-    int fond;
-    printf("\nCantidad de elementos de la pila: ");
-    scanf("%d", &n);
-    fflush(stdin);
+// int main(){
+//     Pila P;
+//     int x, n;
+//     int fond;
+//     printf("\nCantidad de elementos de la pila: ");
+//     scanf("%d", &n);
+//     fflush(stdin);
 
-    P=pilaVacia();
-    for (int i = 0; i < n; i++)
-    {
-        printf("\nElemento [%d]: ", i);
-        scanf("%d", &x);
-        fflush(stdin);
-        P=push(P, x);
-    }
-    mostrarPila(P);
-    printf("\nBorramos el ultimo elemento");
-    P=pop(P);
-    mostrarPila(P);
-    printf("\nIngrese elemento nuevo al comienzo de la pila: ");
-    scanf("%d", &x);
-    fflush(stdin);
-    P=pushF(P,x);
-    mostrarPila(P);
-    fond=fondo(P);
-    printf("\nEl fondo de la pila es: %i", fond);
-    printf("\npila sola \n");
-    mostrarPila(P);
-    P=popFondo(P);
-    printf("\nPopFondo \n");
-    mostrarPila(P);
-    return 0;
-}
+//     P=pilaVacia();
+//     for (int i = 0; i < n; i++)
+//     {
+//         printf("\nElemento [%d]: ", i);
+//         scanf("%d", &x);
+//         fflush(stdin);
+//         P=push(P, x);
+//     }
+//     mostrarPila(P);
+//     printf("\nBorramos el ultimo elemento");
+//     P=pop(P);
+//     mostrarPila(P);
+//     printf("\nIngrese elemento nuevo al comienzo de la pila: ");
+//     scanf("%d", &x);
+//     fflush(stdin);
+//     P=pushF(P,x);
+//     mostrarPila(P);
+//     fond=fondo(P);
+//     printf("\nEl fondo de la pila es: %i", fond);
+//     printf("\npila sola \n");
+//     mostrarPila(P);
+//     P=popFondo(P);
+//     printf("\nPopFondo \n");
+//     mostrarPila(P);
+//     return 0;
+// }
 
