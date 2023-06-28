@@ -25,6 +25,7 @@ Pila pilaVacia(){
     Pila P;
     P.cabecera=NULL;
     P.altura=0;
+    return P;
 }
 
 int esPilaVacia(Pila P){

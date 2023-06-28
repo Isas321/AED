@@ -5,7 +5,6 @@
 const int indefinido=-9999;
 
 typedef char itemAB;
-
 struct nodoAB{
     itemAB raiz;
     struct nodoAB *izq;
@@ -28,7 +27,7 @@ AB ARMARAB(AB I, itemAB r, AB D){
 }
 
 int ESABVACIO(AB T){
-    if(T!=NULL){
+    if(T==NULL){
         return 1;
     } else{
         return 0;
@@ -72,6 +71,21 @@ itemAB RAIZ(AB T){
     }
 }
 
-itemAB MOSTRARAB(){
-    
+int esHoja(AB arbol){
+    if(ESABVACIO(arbol->izq)==1 && ESABVACIO(arbol->der)==1){
+        return 1;
+    } else{
+        return 0;
+    }
 }
+
+void mostrarAB(AB arbol){
+    if(ESABVACIO(arbol)==0){   
+        mostrarAB(arbol->izq);
+        if(RAIZ(arbol)!=indefinido){
+            printf("\t%c", RAIZ(arbol));
+        }     
+        mostrarAB(arbol->der);
+    }
+}
+
