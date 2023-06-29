@@ -1,10 +1,17 @@
 #include <string.h>
 #include "pilaAB.h"
 
+// char ingresaChar(){
+//     char x;
+//     scanf("%c", &x);
+//     fflush(stdin);
+//     return x;
+// }
+
 int main(){
     PilaAB pilaAB;
-    AB ABdeExpresionPosfija, arbol;
-    char str[100], x='c';
+    AB  arbolDeExpresion;
+    char str[100];
     char token;
     int largo;
     printf("\nIngrese expresion posfija: ");
@@ -22,15 +29,12 @@ int main(){
             printf("\n[%c]", str[i]);
             token=str[i];
             pilaAB=PilaAB_AB_expresion_postfija(pilaAB,token);
-            printf("  muestra prrek: ");
-
         }
-        //ABdeExpresionPosfija=top(pilaAB);
+printf("arbolll: ");
+        arbolDeExpresion=top(pilaAB);
+        pilaAB=pop(pilaAB);
+        mostrarAB(arbolDeExpresion);
    }
-               arbol=top(pilaAB);
-            mostrarAB(arbol);
-   printf("\nEL arbol es esto");
-               mostrarAB(arbol);
-   //mostrarAB(ABdeExpresionPosfija);
-      printf("\nEL arbol es esto FIN");
+
+    printf("\nEL arbol es esto FIN");
 }

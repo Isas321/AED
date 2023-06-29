@@ -139,25 +139,23 @@ void mostrarPilaAB(PilaAB P){
 
 PilaAB PilaAB_AB_expresion_postfija(PilaAB PilaABDeArbol, itemAB token){
     AB arbol, derecho, izquierdo;
-    arbol=ABVACIO();
-    derecho=ABVACIO();
-    izquierdo=ABVACIO();
     if(operando(token)){
         arbol=ARMARAB(ABVACIO(), token, ABVACIO());
         PilaABDeArbol=push(PilaABDeArbol,arbol);
     } else{
         if(operador(token)){
-            izquierdo=top(PilaABDeArbol);
-            PilaABDeArbol=pop(PilaABDeArbol);
             derecho=top(PilaABDeArbol);
+            PilaABDeArbol=pop(PilaABDeArbol);
+            izquierdo=top(PilaABDeArbol);
             PilaABDeArbol=pop(PilaABDeArbol);
             if(ESABVACIO(izquierdo)){
                 printf("\nError");
             } else{
                 if(ESABVACIO(derecho)){
+                    printf("Es vacio Derecho");
                     arbol=ARMARAB(izquierdo, token, ABVACIO());
                 } else{
-                    arbol=ARMARAB(izquierdo, token, derecho);
+                    arbol=ARMARAB(izquierdo, token, derecho); 
                 }
             }
             PilaABDeArbol=push(PilaABDeArbol, arbol);
