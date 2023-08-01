@@ -87,15 +87,44 @@ Lista borrar(Lista L){
 
 
 //Implementacion de quiz1
-int ContarPares(Lista *L){
+// int ContarPares(Lista *L){
+//     int cant=0;
+//     while(!esListaVacia(*L)){
+//         if(primerElemento(*L)%2==0){
+//             cant++;
+//         }
+//         *L=borrar(*L);
+//     }
+//     return cant;
+// }
+
+//cuando muestro la lista L despues de ContarPares muestra cualquier cosa porque se libera la memoria L no apunta a nada
+//Lo que falta es retornar el valor de L
+//Asi L=NULL; porque sino por defecto L=basura y muestra cualquier cosa
+//Importante pasar por referencia como usuario 
+int ContarPares(Lista L){
     int cant=0;
-    while(!esListaVacia(*L)){
-        if(primerElemento(*L)%2==0){
+    while(!esListaVacia(L)){
+        if(primerElemento(L)%2==0){
             cant++;
         }
-        *L=borrar(*L);
+        L=borrar(L);
     }
     return cant;
+}
+
+
+
+void mostrarComoUsusario(Lista *L){
+    if(esListaVacia(*L)){
+        printf("\nLista Vacia");
+    } else{
+        while (!esListaVacia(*L))
+        {
+            printf("%d", primerElemento(*L));
+            *L=borrar(*L);
+        }
+    }
 }
 
 

@@ -1,8 +1,8 @@
-#include "filas.h"  //Como se trata de una biblioteca hecha por nosotros la incluimos en comillas
+#include "filaNueva.h"  //Como se trata de una biblioteca hecha por nosotros la incluimos en comillas
 
 int main(){
     int n, x, i;
-    Tfila F, G, X;
+    Fila F, G, X;
     printf("\n\nLista 1");
     printf("\nCantidad de elementos a ingresar: ");
     scanf("%d", &n);
@@ -34,11 +34,11 @@ int main(){
 
     // printf("\nLas filas son iguales? ");
     
-    if(IgualF(F,G)){    
-        printf("\nSon iguales");
-    } else{
-        printf("\nSon distintas");    
-    }
+    // if(IgualF(F,G)){    
+    //     printf("\nSon iguales");
+    // } else{
+    //     printf("\nSon distintas");    
+    // }
          Mostrar(F);
          Mostrar(G);
     printf("\n\nIngrese un elemento y se determinara si pertenece o no a las filas: ");
@@ -57,20 +57,15 @@ int main(){
     }
     Mostrar(F);
     Mostrar(G);
-    // printf("\nInvertir fila ");
-    // //F=Invertir(F);
-
-
-    // printf("\nConcatenar fila 1 y 2");
-    // //F=Concat(F,G);
-    // Mostrar(F);
-    
 
      printf("Cantidad de elementos de fila 2 que desea concatenar: ");
      scanf("%d", &x);
      fflush(stdin);
-    X=FilaVacia();
-    X=CONCATN(F,G,x);
-    Mostrar(X);
+     X=FilaVacia();
+     X=CONCATN(&F, &G, x);
+     Mostrar(X);
+          Mostrar(F);
+               Mostrar(G);
+
     return 0;
 }

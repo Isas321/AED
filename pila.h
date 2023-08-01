@@ -41,6 +41,7 @@ Pila push(Pila P, item x){
     nuevo=(struct nodo*)malloc(sizeof(struct nodo));
     nuevo->dato=x;
     nuevo->siguiente=P.cabecera;
+    
     P.cabecera=nuevo;
     P.altura++;
     return P;
@@ -48,17 +49,31 @@ Pila push(Pila P, item x){
 
 Pila pop(Pila P){
     struct nodo *aux;
-    aux=P.cabecera;
-    P.cabecera=P.cabecera->siguiente;
-    P.altura--;
-    free(aux);
-    return P;
+    //Siempre preguntar si esta vacia o no
+    //Si esta vacia porque si borro altura seria negativo!
+    //Y P apuntaria a cualquier cosa excepto a NULL que es lo que debe ser
+    if(!esPilaVacia(P)){
+        aux=P.cabecera;
+        P.cabecera=P.cabecera->siguiente;
+        P.altura--;
+        free(aux);
+        return P;
+    } else{
+        return pilaVacia();
+    }
+
 }
 
 item top(Pila P){
     item tope;
-    tope=P.cabecera->dato;
-    return tope;
+    //Aqui tambien! debo tener un valor indefinido para cuando me entreguen una pila vacia!
+    if(!esPilaVacia(P)){
+        tope=P.cabecera->dato;
+        return tope;
+    } else{
+        return indefinido;
+    }
+
 }
 
 void mostrarPila(Pila P){
@@ -106,10 +121,10 @@ Pila popFondo(Pila P){
     if(esPilaVacia(P)){
         return P;
     } else{
-        if((P.cabecera->siguiente)->siguiente==NULL){
-            aux=P.cabecera->siguiente;
-            P.cabecera->siguiente=NULL;
-            P.altura--;
+        if((P.cabecera->siguiente)->siguiente==NULL){ //     1   -   2  -   NULL
+            aux=P.cabecera->siguiente;                  // P.cabecera=1 
+            P.cabecera->siguiente=NULL;                 // P.cabecera->siguiente=2
+            P.altura--;                                 //(P.cabecera->siguiente)->siguiente==NULL
             free(aux);
             return P;
         } else{

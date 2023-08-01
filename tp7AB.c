@@ -17,6 +17,7 @@ int main(){
     printf("\nIngrese expresion posfija: ");
     fgets(str, 100, stdin);
     printf("\nLa cadena ingresada es: %s", str);
+    printf("El numero ingresado es: %d", atoi(str));
     printf("\n");
     largo = strlen(str);
     if(largo){
@@ -38,3 +39,18 @@ printf("arbolll: ");
 
     printf("\nEL arbol es esto FIN");
 }
+
+
+// int main(){
+//     char cadena[100];
+//     int largo;
+//     printf("Ingrese cad: ");
+//     fgets(cadena, 100, stdin);
+//     largo=strlen(cadena)-1;
+//     printf("Largo: %d", largo);
+//     for (int i = 0; i < largo; i++)
+//     {
+//         printf("\n  %c", cadena[i]);
+        
+//     }
+// }

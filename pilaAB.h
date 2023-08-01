@@ -58,7 +58,7 @@ PilaAB push(PilaAB P, AB x){
     return P;
 }
 
-PilaAB pop(PilaAB P){
+PilaAB pop(PilaAB P){ //MAL! debo pregutar si esta vacia o no!
     struct nodo *aux;
     aux=P.cabecera;
     P.cabecera=P.cabecera->siguiente;
@@ -67,14 +67,14 @@ PilaAB pop(PilaAB P){
     return P;
 }
 
-AB top(PilaAB P){
+AB top(PilaAB P){ //MAL! debo pregutar si esta vacia o no!
     AB tope;
     tope=P.cabecera->dato;
     return tope;
 }
 
 //Para mi que esta mal esto solo muestra una raiz, no tiene sentido
-void mostrarPilaAB(PilaAB P){
+void mostrarPilaAB(PilaAB P){ //MAL! debo pregutar si esta vacia o no!
     AB arbol;
     char caracter;
     while (P.cabecera!=NULL)
@@ -153,7 +153,7 @@ PilaAB PilaAB_AB_expresion_postfija(PilaAB PilaABDeArbol, itemAB token){
             } else{
                 if(ESABVACIO(derecho)){
                     printf("Es vacio Derecho");
-                    arbol=ARMARAB(izquierdo, token, ABVACIO());
+                    arbol=ARMARAB(derecho, token, ABVACIO());
                 } else{
                     arbol=ARMARAB(izquierdo, token, derecho); 
                 }

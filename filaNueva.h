@@ -7,39 +7,24 @@ const int indefinido=-9999;
 
 struct nodo{
     item dato;
-    struct nodo* sig;
+    struct nodo *sig;
 };
 
-typedef struct nodo{
-    item dato;
-    struct nodo* sig;
-}Tnodo; //Haciendo uso de typedef le asigno un alias a struct nodo como Tnodo(Tipo Nodo)
-typedef struct Fila{
-    struct nodo* frente;    //Frente apunta a la estructura nodo al igual que Final
+typedef struct {
+    struct nodo* frente;
     struct nodo* final;
     int longitud;
-}Tfila; //Haciendo uso de typedef le asigno un alias a struct Fila como TFila(Tipo fila)
+} Fila;
 
-// struct nodo{
-//     item dato;
-//     struct nodo *sig;
-// }
-
-// typedef struct {
-//     struct nodo* frente;
-//     struct nodo* final;
-//     int longitud;
-// } Fila;
-
-Tfila FilaVacia(){
-    Tfila F;
+Fila FilaVacia(){
+    Fila F;
     F.frente=NULL;
     F.final=NULL;
     F.longitud=0;
     return F;
 }
 
-int EsFilaVacia(Tfila F){
+int EsFilaVacia(Fila F){
     if(F.frente==NULL && F.final==NULL && F.longitud==0){
         return 1;
     } else{
@@ -47,7 +32,7 @@ int EsFilaVacia(Tfila F){
     }
 }
 
-Tfila EnFila(Tfila F, item x){
+Fila EnFila(Fila F, item x){
     struct nodo *nuevo;     //Apunta a la estructura de nodo
     nuevo=(struct nodo*)malloc(sizeof(struct nodo));
     nuevo->dato=x;
@@ -63,7 +48,7 @@ Tfila EnFila(Tfila F, item x){
     return F;
 }
 
-item Frente(Tfila F){
+item Frente(Fila F){
     if(EsFilaVacia(F)){
         return indefinido;
     } else{
@@ -71,7 +56,7 @@ item Frente(Tfila F){
     }
 }
 
-Tfila Defila(Tfila F){
+Fila Defila(Fila F){
     struct nodo *aux;
     aux=F.frente;
     if(EsFilaVacia(F)){
@@ -92,19 +77,19 @@ Tfila Defila(Tfila F){
     return F;
 }
 
-int Longitud(Tfila F){
+int Longitud(Fila F){
     return F.longitud;
 }
 
 //IMPORTANTE -> No usar defila porque borra todo! libera la memoria
-// int Pertenece(Tfila F, item x){
+// int Pertenece(Fila F, item x){
 //     if(EsFilaVacia(F)){
 //         return 0;
 //     }
 //     return (Frente(F)==x || Pertenece(Defila(F),x)); //Es lo mismo que lo de arriba
 // }
 
-int Pertenece(Tfila F, item x){
+int Pertenece(Fila F, item x){
     int frente;
     if(F.frente==NULL){
         return 0;
@@ -117,7 +102,7 @@ int Pertenece(Tfila F, item x){
 }
 
  /*
-int IgualF(Tfila F, Tfila G){
+int IgualF(Fila F, Fila G){
     int frenteF, frenteG;
     if(F.frente==NULL && F.frente==NULL){
         return 1;
@@ -138,7 +123,7 @@ int IgualF(Tfila F, Tfila G){
 
 */
 
-// Tfila Concat(Tfila *F, Tfila *G){
+// Fila Concat(Fila *F, Fila *G){
 //     if(EsFilaVacia(*G)){
 //         return *F;
 //     } else{
@@ -146,7 +131,7 @@ int IgualF(Tfila F, Tfila G){
 //     }
 // }
 //NO USAR DEFILA
-// Tfila Invertir(Tfila F){
+// Fila Invertir(Fila F){
 //     if(EsFilaVacia){
 //         return F;
 //     } else{
@@ -156,8 +141,8 @@ int IgualF(Tfila F, Tfila G){
 
 
 //  Funcion recursiva CONTATN implementada como usuario
-/*
-Tfila CONCATN(Tfila *F, Tfila *G, int N){
+
+Fila CONCATN(Fila *F, Fila *G, int N){
     int frente;
     if(N==0 || EsFilaVacia(*G)){
         return *F;
@@ -167,12 +152,14 @@ Tfila CONCATN(Tfila *F, Tfila *G, int N){
         *G=Defila(*G);
         return CONCATN(F, G, N-1);
     }
-}*/
+}
 
 
 
-void Mostrar(Tfila F){
+void Mostrar(Fila F){
     printf("\n\n");
+     printf("La fila es: ");
+
     while (F.frente!=NULL)
     {
         printf("    %d", F.frente->dato);
